@@ -1,0 +1,2 @@
+class BadArgException(Exception):
+    pass

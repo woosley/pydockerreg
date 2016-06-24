@@ -1,0 +1,6 @@
+click
+requests
+prompt-toolkit
+pytest
+pygments
+tabulate
