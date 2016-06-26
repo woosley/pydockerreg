@@ -1,4 +1,3 @@
-# pydockereg
+# pydockerreg
 
-pydockerreg is a command line shell to talk with 
-registry
+pydockerreg is a command line shell to talk with your private registry

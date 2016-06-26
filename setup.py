@@ -1,7 +1,4 @@
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+from setuptools import setup, find_packages
 
 import codecs
 import os
@@ -47,7 +44,7 @@ setup(
     author='Woosley Xu',
     author_email='woosey.xu@gmail.com',
     license='MIT',
-    packages=['pydockerreg'],
+    packages=find_packages("."),
     entry_points="""
         [console_scripts]
         pydr=pydockerreg.cli:cli
