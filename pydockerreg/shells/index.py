@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 import click
 from six.moves.urllib_parse import urlparse
 
