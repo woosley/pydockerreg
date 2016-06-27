@@ -37,10 +37,17 @@ class Repo(Base):
     def get_prompt(self):
         return self.repo + "> "
 
+    @opt_manager("-f", dest="force", action="store_true", help="force delete",
+                 default=False)
     @opt_manager("tag", help="image with tag to delete")
     def rm(self):
         """remove/delete a image by tag"""
         digest = self.get_digest(self.repo, self.args.tag)
+        if not self.args.force:
+            msg = "Are you sure to delete {}/{}? ".format(self.repo, self.args.tag)
+            if not self.ask_confirm(msg):
+                return
+
         res = self.delete_image(self.repo, digest)
         if res.status_code != 202:
             raise Exception(

@@ -7,7 +7,7 @@ from prompt_toolkit import prompt
 from pygments.token import Token
 from pygments.style import Style
 from pygments.styles.default import DefaultStyle
-from .completion import OptLiveCompleter
+from .completion import OptLiveCompleter, WordCompleter
 
 class DocumentStyle(Style):
     styles = {
@@ -22,6 +22,7 @@ class DocumentStyle(Style):
 class Base(object):
 
     __metaclass__ = ABCMeta
+    yes_no_completer = WordCompleter(["yes", "no"], ignore_case=True)
 
     def __init__(self, session):
         self.session = session
@@ -93,3 +94,16 @@ class Base(object):
     def exists(self):
         """This function will make sure run is called if return True"""
         return True
+
+    def ask_confirm(self, msg="Are you sure? "):
+        try:
+            while True:
+                text = prompt(msg, completer=self.yes_no_completer)
+                if text.lower() == "yes":
+                    return True
+                elif text.lower() == "no":
+                    return False
+                else:
+                    click.echo("please input yes/no")
+        except:
+            return False

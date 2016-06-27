@@ -1,4 +1,5 @@
 from prompt_toolkit.completion import Completer, Completion
+from prompt_toolkit.contrib.completers import WordCompleter
 import shlex
 import re
 
